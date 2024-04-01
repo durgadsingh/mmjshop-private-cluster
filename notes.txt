@@ -1,0 +1,10 @@
+
+We need to authenticate the gcloud and do some configuration on the jump server. 
+The gcloud CLI and kubectl installation is required at the jump server for being able to run the gcloud and kubectl commands.
+
+We need to create the yaml file on the jump server and then execute the command `kubectl apply -f juiceshop.yaml` from the jump server.
+kubectl apply -f juiceshop.yaml
+
+NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
+kubernetes             ClusterIP      10.12.0.1     <none>          443/TCP        100m
+lb-juiceshop-service   LoadBalancer   10.12.4.127   34.121.25.117   80:31886/TCP   53s

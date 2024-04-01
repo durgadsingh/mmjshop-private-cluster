@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: juiceshop-deployment
+  labels:
+    app: juiceshop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: juiceshop
+  template:
+    metadata:
+      labels:
+        app: juiceshop
+    spec:
+      containers:
+      - name: jshop-sha256-1
+        image: us-central1-docker.pkg.dev/martins-juice-shop/mm-juice-shop/jshop@sha256:204d8a2177cf82ff589284d186e22bc77e72684415df25149308e8e9dad9629c
+        ports:
+        - containerPort: 3000
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-juiceshop-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: juiceshop
+  ports:
+    - name: http  
+      port: 80
+      targetPort: 3000
+      protocol: TCP
